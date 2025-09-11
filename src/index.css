@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/* @theme{
+    extend: {
+        colors: {
+            primary: '#8B4513',
+            secondary: '#6FA3EF',
+            accent: '#FFB74D',
+            neutral: '#E0E0E0',
+            base: '#FFFFFF',
+            info: '#2196F3',
+            success: '#4CAF50',
+            warning: '#FFC107',
+            error: '#F44336',
+        }
+    }
+} */
+
+body{
+    /* @apply bg-gray-100 text-gray-900; */
+    /* background-color: #ffc2ba; */
+    /* background-color: FEFFBE; */
+    /* background-color: #EBD494; */
+    /* background-color: #FFF8F0; */
+    background-color: #E6E8D2;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+/* .heroText{
+    padding: 15px;
+    -webkit-background-clip: text;
+    background-clip: clip;
+    color: transparent;
+} */
+
+.griddiv{
+    display: grid;
+    grid-template-columns: 400px 200px;
+    /* grid-template-rows: auto auto; */
+}
+
+.gridone{
+    grid-row: span 2;
+}
