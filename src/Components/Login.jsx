@@ -13,7 +13,6 @@ const Login = () => {
 
   const onSubmit = async(data) => {
     // console.log(data);
-
     try{
       console.log('working');
       const response = await dispatch(loginUser(data));
@@ -22,7 +21,7 @@ const Login = () => {
         const {token } = response.payload;
         localStorage.setItem('token', token);
         toast.success("User logged in successfully");
-        navigate('/user');
+        navigate('/order');
       } else {
         console.error("Error logging user in", response.payload.message);
       }
@@ -30,9 +29,7 @@ const Login = () => {
     } catch(err){
       console.error(err)
     }
-    
-
-
+      
   }
 
   return (

@@ -1,4 +1,11 @@
-import React from 'react'
+import React from 'react';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarHeader,
+} from "@/components/ui/sidebar"
 
 const Restaurantdashboard = () => {
   return (

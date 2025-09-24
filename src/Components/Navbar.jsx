@@ -25,7 +25,7 @@ const Navbar = () => {
                 </ul>
             </div> 
             <div className='hidden lg:flex gap-3 '>
-              <button className='border-none rounded-full bg-[#D2691E] hover:bg-[#6B8E23] text-white px-5 py-2 font-semibold'><a href="./login.jsx">Order Now</a></button>
+              <button className='border-none rounded-full bg-[#D2691E] hover:bg-[#6B8E23] text-white px-5 py-2 font-semibold'><a href="/login">Order Now</a></button>
               
               {/* <button className='border-2 text-[#D2691E] rounded-full bg-white border-[#6B8E23] px-5 py-2 font-semibold'>Login</button> */}
             </div>  

@@ -12,6 +12,7 @@ import EachRestaurantMenu from "../Restaurants/EachRestaurantMenu";
 import RestaurantLogin from "../Restaurants/RestaurantLogin";
 import Restaurantdashboard from "../Restaurants/Restaurantdashboard";
 import CartItem from "../Restaurants/CartItem";
+import Checkout from "../checkout/checkout";
 
 
 const router= createBrowserRouter([  
@@ -56,7 +57,11 @@ const router= createBrowserRouter([
             {
                 path: "cart",
                 element: <CartItem />
-            }
+            },
+            {
+                path: "checkout",
+                element: <Checkout />
+            },
         ]   
     }, 
     {
@@ -68,16 +73,15 @@ const router= createBrowserRouter([
                 element: <RegisterRest />
             },
             {
-                path: "/restaurant/login",
+                path: "login",
                 element: <RestaurantLogin />
             },
             {
-                path: "/restaurant/dashboard",
+                path: "dashboard",
                 element: <Restaurantdashboard />
             }
            
         ]
-
     }
 ]);
 
