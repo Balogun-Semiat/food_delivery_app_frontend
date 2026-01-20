@@ -1,16 +1,20 @@
 import {createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
+  
 
-
-
-
-export const postMenu = createAsyncThunk('menu/postMenu', async (data, thunkAPI) =>{
+export const postMenu = createAsyncThunk('menu/postMenu', async (formData, thunkAPI) =>{
     try{
-        const response = await axios.post(`${baseUrl()}/menu/post-menu`, data);
+        const token = localStorage.getItem('token');
+        const response = await axios.post(`${baseUrl()}/menu/post-menu`, formData, {
+            headers:{
+                // "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data;
-    } catch(error){
-        return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    } catch(err){
+        return thunkAPI.rejectWithValue(err.response?.data || { message: err.message });
     }
 })
 

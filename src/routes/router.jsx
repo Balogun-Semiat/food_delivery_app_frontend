@@ -13,6 +13,8 @@ import RestaurantLogin from "../Restaurants/RestaurantLogin";
 import Restaurantdashboard from "../Restaurants/Restaurantdashboard";
 import CartItem from "../Restaurants/CartItem";
 import Checkout from "../checkout/checkout";
+import Orders from "@/Restaurants/Orders";
+import AddMenu from "@/Restaurants/AddMenu";
 
 
 const router= createBrowserRouter([  
@@ -65,21 +67,29 @@ const router= createBrowserRouter([
         ]   
     }, 
     {
+        path: '/restaurant/login',
+        element: <RestaurantLogin />
+    },
+    {
+        path: '/restaurant/register',
+        element: <RegisterRest />
+    },
+    {
         path: 'restaurant',
-        // element: <RegisterRest />,
+        element: <Restaurantdashboard />,
         children: [
+            // {
+            //     path: "dashboard",
+            //     element: <Restaurantdashboard />
+            // },
             {
-                index: true,
-                element: <RegisterRest />
+                path: "orders",
+                element: <Orders />
             },
             {
-                path: "login",
-                element: <RestaurantLogin />
+                path: "add-menu",
+                element: <AddMenu />
             },
-            {
-                path: "dashboard",
-                element: <Restaurantdashboard />
-            }
            
         ]
     }

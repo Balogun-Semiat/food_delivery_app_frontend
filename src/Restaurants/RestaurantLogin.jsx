@@ -23,7 +23,7 @@ const RestaurantLogin = () => {
                 const {token} = response.payload;
                 // console.log(token); 
                 localStorage.setItem('token', token);
-                navigate('/restaurant/dashboard');
+                navigate('/restaurant');
             } else {
                 console.error("Error logging restaurant in", response.payload.message);
             }

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
   const {
@@ -9,48 +10,31 @@ export default function Checkout() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
+  const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const cartTotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  const handleCheckout = () => {};
 
-  //   const handleCheckout = async () => {
-  //     try {
-  //       // 1. Create order in backend
-  //       const { data } = await axios.post("/api/orders", {
-  //         items: cartItems,
-  //         total: cartTotal,
-  //         restaurantId: "123", // dynamic
-  //         userId: "456", // from auth
-  //       });
+  const token = localStorage.getItem('token');
+  const handlePayment = async() => {
+    try{
+      const response = await axios.post('http://localhost:5000/payment/initiate', {amount: cartTotal}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log(response, "Payment initiation response");
+      window.location.href = response.data.data.authorization_url;
+      navigate('/order');
+    } catch(error){
+      console.error("Payment error:", error.response || error.message);
+      alert("Payment failed. Please try again.");
+    }
+  };
 
-  //       const orderId = data.order._id;
-
-  //       // 2. Trigger Paystack/Flutterwave payment
-  //       const handler = window.PaystackPop.setup({
-  //         key: "YOUR_PUBLIC_KEY", // test key
-  //         email: "user@email.com", // dynamic from auth
-  //         amount: cartTotal * 100, // kobo in Paystack
-  //         ref: orderId, // use your backend order id
-  //         onClose: () => alert("Payment window closed."),
-  //         callback: async (response) => {
-  //           // verify payment on backend
-  //           await axios.post("/api/payments/verify", {
-  //             reference: response.reference,
-  //             orderId,
-  //           });
-  //           alert("Payment successful!");
-  //         },
-  //       });
-
-  //       handler.openIframe();
-  //     } catch (err) {
-  //       console.error(err);
-  //       alert("Something went wrong during checkout.");
-  //     }
-  //   };
 
   return (
     <div className="max-w-5xl mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -149,7 +133,7 @@ export default function Checkout() {
         </div>
 
         <button
-          onClick={handleCheckout}
+          onClick={handlePayment}
           className="w-full bg-green-600 text-white py-2 rounded-md"
         >
           Pay with Paystack

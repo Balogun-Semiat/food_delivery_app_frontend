@@ -89,7 +89,7 @@ const RegisterRest = () => {
             className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...register("state", {required: "State is required"})}
           />
-          {errors.address && 
+          {errors.state && 
             <p className="text-red-500 text-sm mt-1"> {errors.state.message} </p>
           }
         </div>
